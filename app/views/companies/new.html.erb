@@ -1,0 +1,51 @@
+<h1><%= action_name == 'new' ? '新規企業作成' : '企業編集' %></h1>
+
+<div class="form-container">
+<%= form_with(model: @company, local: true) do |f| %>
+    <div class="field">
+        <%= f.label :name, '企業名' %>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :industry, '業種' %>
+        <%= f.text_field :industry, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :status, 'ステータス' %>
+        <%= f.select :status, options_for_select([['インターン', 'インターン'], ['本選考', '本選考']], @company.status), {}, { class: 'form-control' } %>
+    </div>
+
+    <div class="field">
+        <%= f.label :url, 'URL' %>
+        <%= f.text_field :url, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :id_copy, 'ID' %>
+        <%= f.text_field :id_copy, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :schedule, 'スケジュール' %>
+        <%= f.date_field :schedule, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :notes, 'メモ' %>
+        <%= f.text_area :notes, class: 'form-control' %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit '保存', class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+<%= link_to 'キャンセル', companies_path, class: 'btn btn-secondary mt-3' %>
+</div>

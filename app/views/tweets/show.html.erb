@@ -1,0 +1,37 @@
+<h1>企業詳細</h1>
+
+<div class="tweet">
+    <h2><%= @tweet.title %></h2>
+    <p><%= @tweet.body %></p>
+    <p><%= @tweet.created_at %></p>
+    <% if @tweet.image? %>
+    <%= image_tag @tweet.image.url, class: 'img-fluid' %>
+    <% end %>
+</div>
+
+<div class="comment-wrapper">
+    <h3>コメント一覧</h3>
+    <% @tweet.comments.each do |comment| %>
+    <div class="comment">
+        <strong><%= comment.user.email if comment.user %></strong>
+        <p><%= comment.content %></p>
+    </div>
+    <% end %>
+</div>
+
+<% if user_signed_in? %>
+    <%= form_with(model: [@tweet, Comment.new], local: true) do |f| %>
+    <div class="field">
+        <%= f.label :content, "コメントを追加" %>
+        <%= f.text_area :content, rows: 3 %>
+    </div>
+    <div class="actions">
+        <%= f.submit "コメントする", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+<% end %>
+
+<%= link_to 'Tweet一覧に戻る', tweets_path, class: 'btn btn-secondary' %>
+<%= link_to '編集', edit_tweet_path(@tweet), class: 'btn btn-warning' %> | 
+<%= link_to '削除', tweet_path(@tweet), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %> | 
+<%= link_to '一覧に戻る', tweets_path, class: 'btn btn-secondary' %>

@@ -1,0 +1,66 @@
+<h1>就活マネージャー</h1>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+
+<h3>Tweet一覧</h3>
+
+<div class="search-section">
+    <h3>投稿を検索</h3>
+    <%= form_tag(tweets_path, method: :get, class: 'form-inline') do %>
+    <%= text_field_tag :search, params[:search], placeholder: '検索する', class: 'form-control' %>
+    <%= submit_tag '検索する', class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
+<div class="tag-filter-section">
+    <h3>タグで絞り込み</h3>
+    <%= form_tag(tweets_path, method: :get, class: 'form-inline') do %>
+    <% Tag.all.each do |t| %>
+        <div class="form-check">
+        <%= check_box_tag "tag_ids[]", t.id, params[:tag_ids]&.include?(t.id.to_s), class: 'form-check-input' %>
+        <%= label_tag "tag_ids_#{t.id}", t.name, class: 'form-check-label' %>
+        </div>
+    <% end %>
+    <%= submit_tag '検索', class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
+<% if user_signed_in? %>
+    <%= link_to "マイページへ", user_path(current_user.id), class: 'btn btn-info' %>
+<% end %>
+
+<%= link_to "新規投稿作成", new_tweet_path, class: 'btn btn-success' %>
+<%= paginate @tweets %>
+
+<div class="tweets-container">
+    <% @tweets.each do |t| %>
+    <div class="tweet card mb-3">
+        <div class="card-body">
+        <h5 class="card-title"><%= t.title %></h5>
+        <p class="card-text"><%= t.body %></p>
+        <p class="card-text"><small class="text-muted"><%= t.created_at %></small></p>
+        <% if t.image? %>
+            <%= image_tag t.image.url, class: 'img-fluid' %>
+        <% end %>
+        <%= link_to "詳細へ", tweet_path(t.id), class: 'btn btn-primary' %>
+        <% if user_signed_in? && current_user.id == t.user_id %>
+            <%= link_to "編集する", edit_tweet_path(t.id), class: 'btn btn-warning' %>
+            <%= link_to "削除する", tweet_path(t.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        <% end %>
+        </div>
+    </div>
+    <% end %>
+</div>
+
+<%= month_calendar(attribute: :created_at, start_attribute: :created_at, end_attribute: :updated_at, events: @events || []) do |date, events| %>
+    <%= date %>
+    <% events.each do |event| %>
+    <p><%= link_to event.title, event %></p>
+    <% end %>
+<% end %>
+
+<div class="add-tag-section">
+    <%= form_tag(tweets_path, method: :get, class: 'form-inline') do %>
+    <%= text_field_tag :tag, nil, placeholder: 'タグを追加', class: 'form-control' %>
+    <%= submit_tag '追加', class: 'btn btn-primary' %>
+    <% end %>
+</div>

@@ -1,0 +1,408 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require simple_calendar
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #343a40;
+}
+
+.header {
+    background-color: #003366; /* 紺色に近い青色 */
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+}
+
+.navbar {
+    background-color: #003366; /* 紺色に近い青色 */
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #cccccc !important;
+}
+
+.actions, .tabs, .company-list {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.actions .btn, .tabs .tab {
+    margin: 0 5px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.search-form input {
+    width: 200px;
+    padding: 5px;
+}
+
+.company-card {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-card h2 {
+    margin-top: 0;
+}
+
+.company-card p {
+    margin: 5px 0;
+}
+
+.btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.tabs .tab.active {
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+/* カレンダースタイル */
+.month-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    table-layout: fixed; /* 各セルの幅を均等にします */
+}
+
+.month-calendar th, .month-calendar td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+    width: 14.28%; /* 各セルの幅を均等にします */
+    height: 100px; /* 各セルの高さを均等にします */
+}
+
+.month-calendar th {
+    background-color: #f4f4f4;
+}
+
+.month-calendar .day {
+    min-height: 100px;
+    position: relative;
+}
+
+.month-calendar .day .date {
+    font-weight: bold;
+}
+
+.month-calendar .day .company-link-wrapper {
+    margin-top: 5px;
+}
+
+.month-calendar .day .company-link {
+    display: block;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    padding: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.month-calendar .day .company-link:hover {
+    background-color: #e8e8e8;
+}
+
+.company-calendar-header {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #cccccc !important;
+}
+
+.link-style-btn {
+    cursor: pointer;
+    border: none;
+    background-color: #01356c !important; /* ナビゲーションバーと同じ色にする */
+    color: white !important; /* 文字色を白色にする */
+    padding: 0;
+    font: inherit;
+    text-decoration: none;
+}
+
+.link-style-btn:hover {
+    text-decoration: underline;
+    background-color: #0056b3 !important; /* ホバー時の背景色を変更する */
+    color: white !important; /* 文字色を白色に保つ */
+}
+
+.company-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.company-card {
+    flex: 1 1 calc(50% - 20px); /* 幅を50%に設定し、カード間の隙間を引いたサイズにする */
+    max-width: calc(50% - 20px); /* 最大幅を設定 */
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+@import 'bootstrap';
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #333;
+    padding: 10px;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #0056b3;
+}
+
+.profile-image {
+    max-width: 20% !important;
+    height: auto !important;
+}
+
+.company-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.company-card {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #003366;
+    color: white;  
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.card-body p {
+    margin: 10px 0;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-top: 1px solid #154c83;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.actions {
+    text-align: center;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile-card {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card .card-body p {
+    margin: 10px 0;
+}
+
+.profile-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* 背景に格子状の模様を追加 */
+body {
+    background-color: #f8f9fa;
+    background-image: url('/images/grid.png');
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+/* ログインの見出しスタイル */
+.login-title {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 3rem;
+    color: #003366; /* 紺色に近い青色 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* フォームコンテナのスタイル */
+.login-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-card {
+    max-width: 500px; /* ボックスを大きく */
+    width: 100%;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 30px; /* パディングを増やす */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-card .field {
+    margin-bottom: 20px; /* マージンを増やす */
+}
+
+.login-card label {
+    font-size: 18px; /* フォントサイズを大きく */
+}
+
+.login-card input {
+    font-size: 16px; /* フォントサイズを大きく */
+    padding: 10px; /* インプットフィールドのパディングを増やす */
+    width: 100%; /* フィールドの幅を100%に */
+    box-sizing: border-box; /* ボックスのサイズを調整 */
+}
+
+.login-card .actions {
+    margin-top: 30px; /* マージンを増やす */
+}
+
+.login-card .btn {
+    font-size: 18px; /* ボタンのフォントサイズを大きく */
+    padding: 10px 20px; /* ボタンのパディングを増やす */
+}

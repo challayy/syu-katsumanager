@@ -1,0 +1,33 @@
+ja:
+  hello: "こんにちは、世界"
+  errors:
+    messages:
+      not_saved:
+        one: "%{resource}を保存できませんでした：1つのエラーが発生しました"
+        other: "%{resource}を保存できませんでした：%{count}つのエラーが発生しました"
+      confirmation: "確認が一致しません"
+      current_password: "現在のパスワードが無効です"
+  devise:
+    registrations:
+      updated: "アカウント情報が更新されました。"
+      update_needs_confirmation: "アカウント情報は更新されましたが、新しいメールアドレスの確認が必要です。"
+      destroyed: "アカウントが削除されました。"
+      signed_up: "アカウントが作成されました。"
+      signed_up_but_unconfirmed: "アカウントが作成されましたが、確認が必要です。確認用のメールを送信しました。"
+      signed_up_but_inactive: "アカウントが作成されましたが、有効化が必要です。"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください"
+              invalid: "有効なメールアドレスを入力してください"
+              taken: "そのメールアドレスはすでに使用されています"
+            password:
+              blank: "パスワードを入力してください"
+              confirmation: "パスワードが一致しません"
+              too_short: "パスワードは最低でも %{count} 文字以上で入力してください"
+            current_password:
+              blank: "現在のパスワードを入力してください"
+              invalid: "現在のパスワードが無効です"

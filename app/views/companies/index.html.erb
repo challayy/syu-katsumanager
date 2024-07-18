@@ -1,0 +1,59 @@
+<h1>企業一覧</h1>
+
+<div class="actions">
+    <%= link_to '絞り込み', '#', class: 'btn btn-primary' %>
+    <!-- 並び替えのドロップダウンメニュー -->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            並び替え
+        </button>
+        <div class="dropdown-menu" aria-labelledby="sortDropdown">
+            <%= link_to '登録順', companies_path(sort: 'created_at'), class: 'dropdown-item' %>
+            <%= link_to '予定順', companies_path(sort: 'schedule'), class: 'dropdown-item' %>
+        </div>
+    </div>
+    <%= link_to '追加', new_company_path, class: 'btn btn-success' %>
+</div>
+
+<%= form_tag(companies_path, method: :get, class: 'search-form') do %>
+    <%= text_field_tag :search, params[:search], placeholder: '検索する', class: 'form-control' %>
+    <%= submit_tag '検索する', class: 'btn btn-primary' %>
+<% end %>
+
+<div class="tabs">
+    <%= link_to 'インターン', companies_path(filter: 'インターン'), class: 'tab' + (params[:filter] == 'インターン' ? ' active' : '') %>
+    <%= link_to '本選考', companies_path(filter: '本選考'), class: 'tab' + (params[:filter] == '本選考' ? ' active' : '') %>
+</div>
+
+<div class="company-list">
+    <% @companies.each do |company| %>
+        <div class="company-card">
+            <h2><%= company.name %></h2>
+            <p>業種: <%= company.industry %></p>
+            <p>ステータス: <%= company.status %></p>
+            <p>URL: <%= company.url %></p>
+            <p>ID: <span id="id-<%= company.id %>"><%= company.id_copy %></span></p>
+            <p>パスワード: <span id="password-<%= company.id %>"><%= company.password %></span></p>
+            <p>スケジュール: <%= company.schedule %></p>
+            <p>メモ: <%= company.notes %></p>
+            <%= link_to 'IDをコピー', '#', class: 'btn btn-info', onclick: "copyToClipboard('id-#{company.id}')" %>
+            <%= link_to 'パスワードをコピー', '#', class: 'btn btn-info', onclick: "copyToClipboard('password-#{company.id}')" %>
+            <%= link_to 'Webページへ', company.url, class: 'btn btn-primary', target: '_blank' %>
+            <%= link_to '編集', edit_company_path(company), class: 'btn btn-warning' %>
+            <%= button_to '削除', company_path(company), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+        </div>
+    <% end %>
+</div>
+
+<script>
+function copyToClipboard(elementId) {
+    var text = document.getElementById(elementId).innerText;
+    var textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    alert("コピーしました: " + text);
+}
+</script>

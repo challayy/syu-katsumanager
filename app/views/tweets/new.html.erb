@@ -1,0 +1,45 @@
+<h1>新規企業作成</h1>
+
+<%= form_with model: [@company, @tweet], local: true do |f| %>
+    <div class="field">
+    <%= f.label :title, "企業名" %>
+    <%= f.text_field :title, size: 20 %>
+    </div>
+
+    <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body, size: "60x12" %>
+    </div>
+
+    <div class="field">
+    <%= f.label :start_time, "いつ/いつから" %>
+    <%= f.date_field :start_time %>
+    </div>
+
+    <div class="field">
+    <%= f.label :end_time, "いつまで？/１日だけの予定の場合、未記入可" %>
+    <%= f.date_field :end_time %>
+    </div>
+
+    <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    </div>
+
+    <div class='form-group'>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+        <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+            <%= tag.check_box class: 'form-check-input' %>
+            <%= tag.text %>
+        <% end %>
+        </div>
+    <% end %>
+    </div>
+
+    <div class="actions">
+    <%= f.submit "更新する", class: "btn btn-primary" %>
+    </div>
+<% end %>
+
+<%= link_to 'キャンセル', company_tweets_path(@company), class: 'btn btn-secondary' %>

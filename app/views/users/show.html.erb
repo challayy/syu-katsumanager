@@ -1,0 +1,23 @@
+<h1>マイページ</h1>
+
+<div class="profile-container">
+    <div class="profile-card">
+    <div class="card-body">
+        <p>名前 : <%= @user.name %></p>
+        <p>メールアドレス : <%= @user.email %></p>
+        <p>プロフィール : <%= @user.profile %></p>
+
+        <% if @user.image.present? %>
+        <p>
+            <strong>画像:</strong><br>
+            <%= image_tag @user.image.url, class: 'profile-image' %>
+        </p>
+        <% end %>
+
+        <%= link_to '編集する', edit_user_registration_path, class: 'btn btn-primary' %>
+    </div>
+</div>
+
+<h2>ユーザーの投稿一覧</h2>
+<%= link_to '企業一覧に戻る', companies_path, class: 'btn btn-secondary mt-3' %>
+</div>

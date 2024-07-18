@@ -1,0 +1,12 @@
+<%= link_to "ログイン", tweets_path %>
+<%= link_to '新規企業作成', new_company_path %>
+<% if user_signed_in? %>
+    <%= link_to "マイページへ", user_path(current_user.id), class: 'btn btn-info' %>
+<% end %>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+<h1>企業一覧</h1>
+<ul>
+    <% @companies.each do |company| %>
+    <li><%= link_to company.name, company_path(company) %></li>
+    <% end %>
+</ul>

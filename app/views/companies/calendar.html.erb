@@ -1,0 +1,13 @@
+<h1 class="company-calendar-header">就活スケジュールカレンダー</h1>
+<%= link_to '企業一覧に戻る', companies_path, class: 'btn btn-secondary' %>
+
+<%= month_calendar events: @companies, attribute: :schedule do |date, companies| %>
+    <div class="day">
+        <div class="date"><%= date.day %></div>
+        <% companies.each do |company| %>
+        <div class="company-link-wrapper">
+            <%= link_to company.name, company_path(company), class: 'company-link' %>
+        </div>
+        <% end %>
+    </div>
+<% end %>
